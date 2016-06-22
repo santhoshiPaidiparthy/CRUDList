@@ -1,0 +1,66 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./userList" ?>
+<window width="100%" border="none" id="userList"
+	apply="crudexample.controller.UserListContrroller">
+	<separator />
+	<separator />
+	<div width="100%">
+		<div sclass="sectionTitle">
+			<separator />
+			<label value="User Details" sclass="sectionTitleLabel" />
+			<separator />
+		</div>
+		<div style="float:right">
+			<button label="Add New" mold="trendy" id="btnNew"
+				sclass="mybutton button blue small" />
+		</div>
+		<div style="clear: both;"></div>
+		<div sclass="sectionSeperator"></div>
+	</div>
+	<separator />
+	<listbox id="UserListbox" model="@{controller.appUsersList}"
+		sclass="mylist" selectedItem="@{controller.selectedUser}"
+		multiple="false" emptyMessage="No User found in the database">
+		<listhead sizable="true">
+			<listheader label="FirstName" sort="auto" />
+			<listheader label="LastName" sort="auto" />
+			<listheader label="Title" sort="auto" />
+			<listheader label="Gender" sort="auto" />
+			<listheader label="Address" sort="auto" />
+			<listheader label="Phone" sort="auto" />
+			<listheader label="Active" sort="auto" />
+			<listheader label="CreateDate" sort="auto" />
+			<listheader label="UpdatedDate" sort="auto" />
+			<listheader label="Action" />
+		</listhead>
+
+		<listitem self="@{each='users'}" value="@{users}"
+			forward="onDoubleClick=onDoubleClickedPersonItem">
+			<listcell label="@{users.FName}" />
+			<listcell label="@{users.LName}" />
+			<listcell label="@{users.Title}" />
+			<listcell label="@{users.Gender}" />
+			<listcell label="@{users.Address}" />
+			<listcell label="@{users.Phone}" />
+			<listcell label="@{users.Active}" />
+			<listcell label="@{users.CreateDate}" />
+			<listcell label="@{users.UpdatedDate}" />
+			<listcell>
+				<hbox spacing="20px">
+					<image forward="onClick=UserListbox.onEdit"
+						sclass="fimageedit">
+					</image>
+					<image forward="onClick=UserListbox.onView"
+						sclass="fimageView">
+					</image>
+
+					<image forward="onClick=UserListbox.onDelete"
+						sclass="fimageDelete">
+					</image>
+				</hbox>
+			</listcell>
+		</listitem>
+
+	</listbox>
+
+
+</window>
